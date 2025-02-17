@@ -6,6 +6,8 @@ const Comment = ({
   onSubmitComment = () => {},
   onEditComment = () => {},
   onDeleteComment = () => {},
+  onUpvoteComment = () => {},
+  onDownvoteComment = () => {},
 }) => {
   const [expand, setExpand] = useState(false);
   const [replyContent, setReplyContent] = useState("");
@@ -40,6 +42,7 @@ const Comment = ({
     onEditComment(comment.id, editedContent);
     setEditMode(false);
   };
+  
 
   return (
     <div className="comment">
@@ -82,6 +85,12 @@ const Comment = ({
         >
           Delete
         </button>
+        <button onClick={() => onUpvoteComment(comment.id)} className="comment-button">
+         👍 Upvote ({comment.votes})
+        </button>
+        <button onClick={() => onDownvoteComment(comment.id)} className="comment-button">
+        👎 Downvote
+        </button>
       </div>
 
       {expand && (
@@ -106,6 +115,8 @@ const Comment = ({
               onSubmitComment={onSubmitComment}
               onEditComment={onEditComment}
               onDeleteComment={onDeleteComment}
+              onUpvoteComment={onUpvoteComment}
+              onDownvoteComment={onDownvoteComment}
             />
           ))}
         </div>

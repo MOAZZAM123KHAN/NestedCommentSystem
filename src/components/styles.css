@@ -44,3 +44,14 @@
   font-size: 12px;
   color: #555;
 }
+.comment-actions button {
+  margin-right: 5px;
+}
+
+.comment-button.upvote {
+  background-color: green;
+}
+
+.comment-button.downvote {
+  background-color: red;
+}

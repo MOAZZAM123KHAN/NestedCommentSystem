@@ -74,12 +74,39 @@ const useCommentTree = (initialComments) => {
   const deleteComment = (commentId) => {
     setComments((prevComments) => deleteNode(prevComments, commentId));
   };
+  
+  const voteNode = (tree, nodeId, type) => {
+    return tree.map((node) => {
+      if (node.id === nodeId) {
+        return {
+          ...node,
+          votes: type === "upvote" ? node.votes + 1 : node.votes - 1,
+        };
+      } else if (node.replies && node.replies.length > 0) {
+        return {
+          ...node,
+          replies: voteNode(node.replies, nodeId, type),
+        };
+      }
+      return node;
+    });
+  };
+
+  const upvoteComment = (commentId) => {
+    setComments((prevComments) => voteNode(prevComments, commentId, "upvote"));
+  };
+
+  const downvoteComment = (commentId) => {
+    setComments((prevComments) => voteNode(prevComments, commentId, "downvote"));
+  };
 
   return {
     comments,
     insertComment,
     editComment,
     deleteComment,
+    upvoteComment,
+    downvoteComment,
   };
 };
 

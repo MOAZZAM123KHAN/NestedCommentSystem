@@ -8,8 +8,8 @@ const NestedComments = ({
   onSubmit = () => {},
   onEdit = () => {},
   onDelete = () => {},
-  // onUpvote = () => {},
-  // onDownvote = () => {},
+   onUpvote = () => {},
+  onDownvote = () => {},
 }) => {
   const [comment, setComment] = useState("");
 
@@ -18,7 +18,7 @@ const NestedComments = ({
     insertComment,
     editComment,
     deleteComment,
-    // sortComments,
+    // sortCommentd,
     // upDownVoteComment,
   } = useCommentTree(comments);
 
@@ -47,6 +47,14 @@ const NestedComments = ({
       setComment("");
     }
   };
+  const handleUpvote = (commentId) => {
+    upvoteComment(commentId);
+  };
+  
+  const handleDownvote = (commentId) => {
+    downvoteComment(commentId);
+  };
+  
 
   return (
     <>
@@ -71,6 +79,8 @@ const NestedComments = ({
           onSubmitComment={handleReply}
           onEditComment={handleEdit}
           onDeleteComment={handleDelete}
+          onUpvoteComment={handleUpvote}
+          onDownvoteComment={handleDownvote}
         />
       ))}
     </>
