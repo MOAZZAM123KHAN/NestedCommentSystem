@@ -18,8 +18,9 @@ const NestedComments = ({
     insertComment,
     editComment,
     deleteComment,
-    // sortCommentd,
-    // upDownVoteComment,
+    upvoteComment,
+    downvoteComment,
+    
   } = useCommentTree(comments);
 
   const handleReply = (commentId, content) => {
